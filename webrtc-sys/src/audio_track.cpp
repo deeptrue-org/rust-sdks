@@ -222,7 +222,7 @@ bool AudioTrackSource::InternalSource::capture_frame(
     // capture directly when the queue buffer is 0 (frame size must be 10ms)
     for (auto sink : sinks_)
       sink->OnData(data.data(), sizeof(int16_t) * 8, sample_rate,
-                   number_of_channels, number_of_frames);
+                   number_of_channels, number_of_frames * sizeof(int16_t));
   }
 
   return true;
