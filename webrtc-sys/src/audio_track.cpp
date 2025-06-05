@@ -164,7 +164,7 @@ AudioTrackSource::InternalSource::InternalSource(
         if (buffer_.size() >= samples10ms) {
           for (auto sink : sinks_)
             sink->OnData(buffer_.data(), sizeof(int16_t) * 8, sample_rate_,
-                         num_channels_, samples10ms / num_channels_);
+                         num_channels_, samples10ms * sizeof(int16_t));
 
           buffer_.erase(buffer_.begin(), buffer_.begin() + samples10ms);
         } else {
